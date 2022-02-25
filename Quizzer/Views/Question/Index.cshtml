@@ -1,0 +1,9 @@
+﻿<h3>Quiz</h3>
+<ol type="1">
+    @foreach(var question in ViewBag.Questions)
+            {
+                <li>
+                    @question.Content
+                </li>
+            }
+</ol>
