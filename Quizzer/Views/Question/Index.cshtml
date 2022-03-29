@@ -4,6 +4,15 @@
             {
                 <li>
                     @question.Content
+                    <ol type="a">
+                        @foreach(var answer in question.Answer)
+                        {
+                            <li>
+                                <input type="radio" name="question_@question.Id" value="@answer.Id" />
+                                @answer.Content
+                            </li>
+                        }
+                    </ol>
                 </li>
             }
 </ol>

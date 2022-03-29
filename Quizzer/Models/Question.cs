@@ -16,7 +16,6 @@ namespace Quizzer.Models
         }
         public int Id { get; set; }
         public string Content { get; set; }
-
         public ICollection<Answer> Answer { get; set; }
     }
 }

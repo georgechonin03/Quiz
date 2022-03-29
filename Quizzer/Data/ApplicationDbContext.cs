@@ -28,7 +28,6 @@ namespace Quizzer.Data
                 builder.AddJsonFile("appsettings.json");
                 var configuration = builder.Build();
                 optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
-
             }
         }
     }

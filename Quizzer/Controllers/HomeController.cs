@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Quizzer.Data;
 using Quizzer.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,13 @@ namespace Quizzer.Controllers
         {
             _logger = logger;
         }
-
+        private ApplicationDbContext _db = new ApplicationDbContext();
+        [Route("index")]
+        [Route("")]
+        [Route("~/")]
         public IActionResult Index()
         {
+            ViewBag.Questions = _db.Question.ToList();
             return View();
         }
 
