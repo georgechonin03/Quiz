@@ -3,7 +3,7 @@
     <form id="question" method="post" asp-action="AddQuestion" asp-controller="Question">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class=form-group row>
-            <label asp-for="Content" class="col-md-2"></label>
+            <label class="col-md-2">Enter your question</label>
             <div class="col-md-10">
                 <input asp-for="Content" class="form-control" />
                 <span asp-validation-for="Content" class="text-danger"></span>
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-10 offset-md-11">
-                <input type="submit" value="Sign up" class="btn btn bg-success" style="color: white;" />
+                <input type="submit" value="Submit" class="btn btn bg-success" style="color: white;" />
             </div>
         </div>
     </form>

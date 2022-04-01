@@ -18,13 +18,8 @@ namespace Quizzer.Controllers
         {
             _logger = logger;
         }
-        private ApplicationDbContext _db = new ApplicationDbContext();
-        [Route("index")]
-        [Route("")]
-        [Route("~/")]
         public IActionResult Index()
         {
-            ViewBag.Questions = _db.Question.ToList();
             return View();
         }
 
