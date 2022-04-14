@@ -41,15 +41,15 @@ namespace Quizzer.Controllers
             _sqlCommand = new SqlCommand(_sqlQuery, _sqlConnection);
 
             _sqlConnection.Open();
-            _sqlCommand.Parameters.AddWithValue("@Content",model.Content);
+            _sqlCommand.Parameters.AddWithValue("@Content", model.Content);
             _sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
 
-            return RedirectToAction("Index","Question");
+            return RedirectToAction("Index", "Question");
         }
 
         [HttpPost]
-        public IActionResult AddAnswer(AnswerVM model)
+        public IActionResult AddAnswer(Answer model)
         {
             string mainConnection = _configuration.GetConnectionString("DefaultConnection");
             _sqlConnection = new SqlConnection(mainConnection);
@@ -62,7 +62,11 @@ namespace Quizzer.Controllers
             _sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
 
-            return RedirectToAction("Index","Question");
+            return RedirectToAction("Index", "Question");
+        }
+        public IActionResult AddAnswer()
+        {
+            return View();
         }
         public IActionResult AddQuestion()
         {
