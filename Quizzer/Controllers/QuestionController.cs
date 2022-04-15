@@ -23,18 +23,24 @@ namespace Quizzer.Controllers
             _db = db;
             _configuration = configuration;
         }
+        /// <summary>
+        /// Parses the questions & answers in the database to ViewBag
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             ViewBag.Questions = _db.Question.ToList();
+            ViewBag.Answers = _db.Answer.ToList();
             return View();
         }
+        /// <summary>
+        /// Method to add questions to the page
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddQuestion(QuestionVM model)
-        {/*
-            var question = new Question
-            {
-                Content = model.Content
-            };*/
+        {
             string mainConnection = _configuration.GetConnectionString("DefaultConnection");
             _sqlConnection = new SqlConnection(mainConnection);
             _sqlQuery = "INSERT INTO [dbo].[Question] VALUES (@Content)";
@@ -47,18 +53,23 @@ namespace Quizzer.Controllers
 
             return RedirectToAction("Index", "Question");
         }
-
+        /// <summary>
+        /// Add answers to specified questions
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddAnswer(Answer model)
         {
             string mainConnection = _configuration.GetConnectionString("DefaultConnection");
             _sqlConnection = new SqlConnection(mainConnection);
-            _sqlQuery = "INSERT INTO [dbo].[Answer] VALUES (@Content, @Correct)";
+            _sqlQuery = "INSERT INTO [dbo].[Answer] VALUES (@Content, @Correct, @QuestionId)";
             _sqlCommand = new SqlCommand(_sqlQuery, _sqlConnection);
 
             _sqlConnection.Open();
             _sqlCommand.Parameters.AddWithValue("@Content", model.Content);
             _sqlCommand.Parameters.AddWithValue("@Correct", model.Correct);
+            _sqlCommand.Parameters.AddWithValue("@QuestionId", model.QuestionId);
             _sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
 
