@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace Quizzer.Models
 {
     [Table("Question")]
-    public class Question
+    public partial class Question
     {
+
         public Question()
         {
             Answer = new HashSet<Answer>();
